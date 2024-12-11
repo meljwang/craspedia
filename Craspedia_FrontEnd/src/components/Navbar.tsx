@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState, useRef, useEffect } from "react";
 import { NavLink } from "react-router-dom";
 import searchIcon from "../assets/search_icon.png";
 import profileIcon from "../assets/profile_icon.png";
@@ -6,6 +6,28 @@ import cartIcon from "../assets/cart_icon.png";
 import logo from "../assets/craspedia_bw.png";
 
 const Navbar = () => {
+  const [dropdownVisible, setDropdownVisible] = useState(false);
+  const dropdownRef = useRef(null);
+
+  // Toggle dropdown visibility
+  const toggleDropdown = () => {
+    setDropdownVisible((prev) => !prev);
+  };
+
+  // Close dropdown when clicking outside
+  useEffect(() => {
+    const handleClickOutside = (event) => {
+      if (dropdownRef.current && !dropdownRef.current.contains(event.target)) {
+        setDropdownVisible(false);
+      }
+    };
+
+    document.addEventListener("mousedown", handleClickOutside);
+    return () => {
+      document.removeEventListener("mousedown", handleClickOutside);
+    };
+  }, []);
+
   return (
     <div className="flex justify-between items-center fixed top-0 left-0 w-full bg-white shadow-lg py-3 px-10 z-50">
       {/* Logo */}
@@ -22,7 +44,7 @@ const Navbar = () => {
               isActive ? "text-yellow-500" : "text-black"
             }`
           }
-          style={{ textDecoration: "none" }} // Disable underline
+          style={{ textDecoration: "none" }}
         >
           Home
         </NavLink>
@@ -33,7 +55,7 @@ const Navbar = () => {
               isActive ? "text-yellow-500" : "text-black"
             }`
           }
-          style={{ textDecoration: "none" }} // Disable underline
+          style={{ textDecoration: "none" }}
         >
           Collections
         </NavLink>
@@ -44,7 +66,7 @@ const Navbar = () => {
               isActive ? "text-yellow-500" : "text-black"
             }`
           }
-          style={{ textDecoration: "none" }} // Disable underline
+          style={{ textDecoration: "none" }}
         >
           About
         </NavLink>
@@ -55,7 +77,7 @@ const Navbar = () => {
               isActive ? "text-yellow-500" : "text-black"
             }`
           }
-          style={{ textDecoration: "none" }} // Disable underline
+          style={{ textDecoration: "none" }}
         >
           Contact
         </NavLink>
@@ -70,15 +92,30 @@ const Navbar = () => {
             0
           </div>
         </NavLink>
-        <div className="group relative">
-          <img src={profileIcon} alt="profile" className="w-5 cursor-pointer" />
-          <div className="hidden group-hover:block absolute right-0 mt-2 bg-white shadow-lg rounded-lg z-50">
-            <div className="flex flex-col gap-2 w-36 py-3 px-5">
-              <p className="cursor-pointer hover:text-yellow-500 text-sm font-medium">Profile</p>
-              <p className="cursor-pointer hover:text-yellow-500 text-sm font-medium">Settings</p>
-              <p className="cursor-pointer hover:text-yellow-500 text-sm font-medium">Logout</p>
+
+        {/* Profile Dropdown */}
+        <div className="relative" ref={dropdownRef}>
+          <img
+            src={profileIcon}
+            alt="profile"
+            className="w-5 cursor-pointer"
+            onClick={toggleDropdown}
+          />
+          {dropdownVisible && (
+            <div className="absolute right-0 mt-2 bg-white shadow-lg rounded-lg z-50">
+              <div className="flex flex-col gap-2 w-36 py-3 px-5">
+                <p className="cursor-pointer hover:text-yellow-500 text-sm font-medium">
+                  Profile
+                </p>
+                <p className="cursor-pointer hover:text-yellow-500 text-sm font-medium">
+                  Settings
+                </p>
+                <p className="cursor-pointer hover:text-yellow-500 text-sm font-medium">
+                  Logout
+                </p>
+              </div>
             </div>
-          </div>
+          )}
         </div>
       </div>
     </div>
