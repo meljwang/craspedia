@@ -6,6 +6,7 @@ const Collections = () => {
   return (
     <div className="flex flex-row flex-wrap pt-10 px-4 sm:px-10 lg:px-16 w-full gap-8">
       {/* Filter Section */}
+      
       <div className="w-full md:w-1/4 p-6">
         <p className="text-xl font-bold flex items-center gap-2">FILTERS</p>
         <div className="border border-gray-300 p-4 mt-6 rounded-md">
@@ -26,6 +27,7 @@ const Collections = () => {
 
       {/* Collections Section */}
       <div className="flex flex-col flex-1">
+      <br/>
         <div className="flex justify-between items-center mb-6">
           {/* Title Header */}
           <HomeTitleHeader text1="ALL" text2="COLLECTIONS" />
