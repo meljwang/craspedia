@@ -29,7 +29,7 @@ const Navbar = () => {
   }, []);
 
   return (
-    <div className="flex justify-between items-center fixed top-0 left-0 w-full bg-white shadow-lg py-3 px-10 z-50">
+    <div className="flex justify-between items-center top-0 left-0 w-full bg-white shadow-lg py-3 px-10 z-50">
       {/* Logo */}
       <NavLink to="/">
         <img src={logo} alt="logo" className="w-10 h-10 cursor-pointer" />

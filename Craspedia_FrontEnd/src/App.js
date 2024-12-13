@@ -8,10 +8,11 @@ import Cart from './pages/Cart.tsx';
 import Orders from './pages/Orders.tsx';
 import Navbar from './components/Navbar.tsx';
 import Contact from './pages/Contact.tsx';
+import Footer from './components/Footer.tsx';
 
 function App() {
   return (
-    <div>
+    <div className="flex flex-col min-h-screen">
       <Navbar />
       <Routes>
         <Route path="/" element={<Home />} />
@@ -22,6 +23,7 @@ function App() {
         <Route path="/orders" element={<Orders />} />
         <Route path="/contact" element={<Contact />} />
       </Routes>
+      <Footer />
     </div>
   )
 }

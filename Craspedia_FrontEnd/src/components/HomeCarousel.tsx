@@ -7,24 +7,15 @@ import crochet_best_seller from "../assets/crochet_best_seller.jpg";
 const slides = [
   {
     id: 1,
-    title: "Latest Collection",
+    title: "Latest Collections",
     description: "Explore our handpicked collection for the season.",
-    image: mosaic_pillow,
+    image: crochet_bag,
     link: "/latest-collection",
     buttonText: "Explore Now",
     buttonGradient: "from-yellow-400 to-yellow-600",
   },
   {
     id: 2,
-    title: "New Arrivals",
-    description: "Be the first to grab our latest arrivals.",
-    image: crochet_bag,
-    link: "/new-arrivals",
-    buttonText: "Discover More",
-    buttonGradient: "from-orange-400 to-orange-600",
-  },
-  {
-    id: 3,
     title: "Best Sellers",
     description: "Shop the most-loved products by our customers.",
     image: crochet_best_seller,
@@ -87,6 +78,7 @@ const HomeCarousel = () => {
               </svg>
             </a>
           </div>
+          
         </motion.div>
       ))}
     </div>
