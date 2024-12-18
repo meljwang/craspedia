@@ -4,7 +4,7 @@ import ItemCard from '../components/ItemCard.tsx';
 
 const Collections = () => {
   return (
-    <div className="flex flex-row flex-wrap pt-10 px-4 sm:px-10 lg:px-16 w-full gap-8">
+    <div className="overflow-x-hidden flex flex-row flex-wrap pt-10 px-4 sm:px-10 lg:px-16 w-full gap-8 mt-16">
       {/* Filter Section */}
       
       <div className="w-full md:w-1/4 p-6">

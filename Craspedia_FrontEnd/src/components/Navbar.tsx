@@ -4,14 +4,21 @@ import searchIcon from "../assets/search_icon.png";
 import profileIcon from "../assets/profile_icon.png";
 import cartIcon from "../assets/cart_icon.png";
 import logo from "../assets/craspedia_bw.png";
+import hamburgerIcon from "../assets/interface.png";
 
 const Navbar = () => {
   const [dropdownVisible, setDropdownVisible] = useState(false);
+  const [menuVisible, setMenuVisible] = useState(false);
   const dropdownRef = useRef(null);
 
   // Toggle dropdown visibility
   const toggleDropdown = () => {
     setDropdownVisible((prev) => !prev);
+  };
+
+  // Toggle mobile menu visibility
+  const toggleMenu = () => {
+    setMenuVisible((prev) => !prev);
   };
 
   // Close dropdown when clicking outside
@@ -29,14 +36,24 @@ const Navbar = () => {
   }, []);
 
   return (
-    <div className="flex justify-between items-center top-0 left-0 w-full bg-white shadow-lg py-3 px-10 z-50">
+    <div className="flex justify-between items-center fixed top-0 left-0 w-full bg-white shadow-lg py-3 px-10 z-50">
       {/* Logo */}
       <NavLink to="/">
         <img src={logo} alt="logo" className="w-10 h-10 cursor-pointer" />
       </NavLink>
 
+      {/* Hamburger Icon for Mobile */}
+      <div className="md:hidden">
+        <img
+          src={hamburgerIcon}
+          alt="menu"
+          className="w-6 cursor-pointer"
+          onClick={toggleMenu}
+        />
+      </div>
+
       {/* Navigation Links */}
-      <div className="flex gap-10">
+      <div className="hidden md:flex gap-10">
         <NavLink
           to="/"
           className={({ isActive }) =>
@@ -82,6 +99,62 @@ const Navbar = () => {
           Contact
         </NavLink>
       </div>
+
+      {/* Mobile Dropdown Menu */}
+      {menuVisible && (
+        <div className="absolute top-16 left-0 w-full bg-white shadow-lg md:hidden">
+          <div className="flex flex-col items-start gap-2 py-3 px-5">
+            <NavLink
+              to="/"
+              className={({ isActive }) =>
+                `text-sm font-medium transition-all duration-200 ${
+                  isActive ? "text-yellow-500" : "text-black"
+                }`
+              }
+              style={{ textDecoration: "none" }}
+              onClick={toggleMenu}
+            >
+              Home
+            </NavLink>
+            <NavLink
+              to="/collections"
+              className={({ isActive }) =>
+                `text-sm font-medium transition-all duration-200 ${
+                  isActive ? "text-yellow-500" : "text-black"
+                }`
+              }
+              style={{ textDecoration: "none" }}
+              onClick={toggleMenu}
+            >
+              Collections
+            </NavLink>
+            <NavLink
+              to="/about"
+              className={({ isActive }) =>
+                `text-sm font-medium transition-all duration-200 ${
+                  isActive ? "text-yellow-500" : "text-black"
+                }`
+              }
+              style={{ textDecoration: "none" }}
+              onClick={toggleMenu}
+            >
+              About
+            </NavLink>
+            <NavLink
+              to="/contact"
+              className={({ isActive }) =>
+                `text-sm font-medium transition-all duration-200 ${
+                  isActive ? "text-yellow-500" : "text-black"
+                }`
+              }
+              style={{ textDecoration: "none" }}
+              onClick={toggleMenu}
+            >
+              Contact
+            </NavLink>
+          </div>
+        </div>
+      )}
 
       {/* Icons */}
       <div className="flex items-center gap-6">
